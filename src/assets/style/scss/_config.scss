@@ -13,3 +13,19 @@ body {
     text-align: center;
   }
 }
+
+.checked {
+  cursor: pointer;
+  &.none {
+    background-color: yellowgreen;
+  }
+  &.userA {
+    background-color: blue;
+  }
+  &.userB {
+    background-color: deeppink;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}

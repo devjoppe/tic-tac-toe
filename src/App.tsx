@@ -1,19 +1,46 @@
 // Import style
 import './assets/style/css/style.css'
 
+import data from './assets/data/gamegrid.json'
+import {useEffect, useState} from "react";
+
+interface GameGridInt {
+    id: number,
+    col: string,
+    row: string,
+    checked?: boolean,
+    user: string
+}
+
 function App() {
+
+    const [gameGrid, setGameGrid] = useState<GameGridInt[]>([])
+    const [playedGrid, setPlayedGrid] = useState<GameGridInt[]>([])
+
+    useEffect(() => {
+        setGameGrid(data)
+    }, [])
+
+    const handleClick = (user:string, col:string, row:string, id:number) => {
+        // Save played grids in new array that checks the game grid score
+        setPlayedGrid([...playedGrid, {
+            id: id,
+            col: col,
+            row: row,
+            user: user
+        }])
+
+        // Update gameGrid with new game data
+        setGameGrid(id, {
+            user: "userA"
+        })
+    }
 
     return (
         <div className="parent">
-            <div data-col="A" data-id="1" data-row="D">A D</div>
-            <div data-col="B" data-id="2" data-row="D">B D</div>
-            <div data-col="C" data-id="3" data-row="D">C D</div>
-            <div data-col="A" data-id="4" data-row="E">A E</div>
-            <div data-col="B" data-id="5" data-row="E">B E</div>
-            <div data-col="C" data-id="6" data-row="E">C E</div>
-            <div data-col="A" data-id="7" data-row="F">A F</div>
-            <div data-col="B" data-id="8" data-row="F">B F</div>
-            <div data-col="C" data-id="9" data-row="F">C F</div>
+            {gameGrid && gameGrid.map(div => (
+                <div onClick={() => handleClick(div.user, div.col, div.row, div.id)} className={`checked ${div.user}`} data-col={div.col} data-id={div.id}  data-row={div.row} >{div.col} {div.row}</div>
+            ))}
         </div>
     )
     }
