@@ -1,3 +1,15 @@
 body {
   background-color: red;
 }
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+  div {
+    border: 1px solid grey;
+    text-align: center;
+  }
+}

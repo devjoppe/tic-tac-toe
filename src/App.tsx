@@ -1,39 +1,21 @@
-
 // Import style
 import './assets/style/css/style.css'
-import {useEffect, useState} from "react";
-
-interface squareInt {
-  row: string,
-  col: number
-}
 
 function App() {
 
-  const [myNumber, setMyNumber] = useState(0)
-  const [myText, setMyText] = useState("")
-  const [squareId, setSquareId] = useState<squareInt[]>([])
-
-  const saveSquare = () => {
-    setSquareId([...squareId, { row: myText, col: myNumber }])
-  }
-
-  useEffect(() => {
-    console.log(squareId)
-  }, [squareId])
-
-  return (
-    <div>
-      <form onSubmit={(e) => {
-        e.preventDefault()
-        saveSquare()
-      }}>
-        <input type="number" value={myNumber} onChange={(e) => setMyNumber(parseInt(e.target.value))}/>
-        <input type="text" value={myText} onChange={(e) => setMyText(e.target.value)} />
-        <button type="submit">Check</button>
-      </form>
-    </div>
-  )
-}
+    return (
+        <div className="parent">
+            <div data-col="A" data-id="1" data-row="D">A D</div>
+            <div data-col="B" data-id="2" data-row="D">B D</div>
+            <div data-col="C" data-id="3" data-row="D">C D</div>
+            <div data-col="A" data-id="4" data-row="E">A E</div>
+            <div data-col="B" data-id="5" data-row="E">B E</div>
+            <div data-col="C" data-id="6" data-row="E">C E</div>
+            <div data-col="A" data-id="7" data-row="F">A F</div>
+            <div data-col="B" data-id="8" data-row="F">B F</div>
+            <div data-col="C" data-id="9" data-row="F">C F</div>
+        </div>
+    )
+    }
 
 export default App
