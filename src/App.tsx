@@ -22,18 +22,28 @@ function App() {
         setGameGrid(data)
     }, [])
 
-    const handleClick = (user:string, col:string, row:string, id:number) => {
+    const handleClick = (user:string, col:string, row:string, id:number, checked:boolean|undefined) => {
+        if(checked) {
+            return
+        }
+        // Call Save played grids
+        savePlayedGrid(user, col, row, id)
+        // Call Update gameGrid with new game data
+        updateGameGrid(id)
+        // Call Switch player
+        switchPlayer()
+    }
+
+    // Save played grids
+    const savePlayedGrid = (user:string, col:string, row: string, id: number) => {
         // Save played grids in new array that checks the game grid score
-        setPlayedGrid([...playedGrid, {
+        const newPlayed:GameGridInt[] = [...playedGrid, {
             id: id,
             col: col,
             row: row,
             user: user
-        }])
-
-        // Update gameGrid with new game data and switch player
-        updateGameGrid(user, id)
-        switchPlayer()
+        }]
+        setPlayedGrid(newPlayed)
     }
 
     // Switch player
@@ -45,26 +55,30 @@ function App() {
         }
     }
 
-    const updateGameGrid = (user:string, id:number) => {
+    const updateGameGrid = (id:number) => {
         const updateGrid = [...gameGrid]
         const targetGrid = updateGrid.find(grid => grid.id === id)
 
         if(targetGrid) {
-            targetGrid.user = user
+            targetGrid.user = player
+            targetGrid.checked = true
         }
-
-        console.log({player})
-
         setGameGrid(updateGrid)
-        console.log({gameGrid})
     }
 
+    console.log({player})
+    console.log({playedGrid})
+    console.log({gameGrid})
+
     return (
-        <div className="parent">
-            {gameGrid && gameGrid.map(div => (
-                <div key={div.id} onClick={() => handleClick(player, div.col, div.row, div.id)} className={`checked ${div.user}`} data-col={div.col} data-id={div.id}  data-row={div.row} >{div.col} {div.row}</div>
-            ))}
-        </div>
+        <>
+            <div className="parent">
+                {gameGrid && gameGrid.map(div => (
+                    <div key={div.id} onClick={() => handleClick(player, div.col, div.row, div.id, div.checked)} className={`checked ${div.user}`} data-col={div.col} data-id={div.id}  data-row={div.row} >{div.col} {div.row}</div>
+                ))}
+            </div>
+            <div>{player}</div>
+        </>
     )
     }
 
