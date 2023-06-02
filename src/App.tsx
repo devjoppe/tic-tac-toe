@@ -12,11 +12,50 @@ interface GameGridInt {
     user: string
 }
 
+interface GameFieldInt {
+    grid: string,
+    times: number,
+    user: string
+}
+
 function App() {
 
     const [gameGrid, setGameGrid] = useState<GameGridInt[]>([])
     const [playedGrid, setPlayedGrid] = useState<GameGridInt[]>([])
     const [player, setPlayer] = useState ("userA")
+
+    const gameField:GameFieldInt[] = [
+        {
+            grid: "A",
+            times: 0,
+            user: ""
+        },
+        {
+            grid: "B",
+            times: 0,
+            user: ""
+        },
+        {
+            grid: "C",
+            times: 0,
+            user: ""
+        },
+        {
+            grid: "D",
+            times: 0,
+            user: ""
+        },
+        {
+            grid: "E",
+            times: 0,
+            user: ""
+        },
+        {
+            grid: "F",
+            times: 0,
+            user: ""
+        },
+    ]
 
     useEffect(() => {
         setGameGrid(data)
@@ -27,7 +66,6 @@ function App() {
         const checkGridResults = () => {
             // Get the checked by the player
             if(playedGrid && playedGrid.length != 0) {
-                //console.log({playedGrid})
                 console.log({player})
                 const playerGrids = playedGrid.map(grid => {
                     if(grid.user === player) {
@@ -35,6 +73,28 @@ function App() {
                     }
                 }).filter(Boolean)
                 console.log({playerGrids})
+                // Check the result
+                let lineCounter = 0
+                gameField.forEach(letter => {
+                    playerGrids.map(grid => {
+                        if(grid && letter.grid === grid.col || grid && letter.grid === grid.row) {
+                            letter.times += 1
+                            letter.user = player
+                        }
+                        if(letter.times >= 1) {
+                            lineCounter +=1;
+                            console.log({lineCounter})
+                        }
+                    })
+                    if(lineCounter === 12) {
+                        console.log("Yey, player: ", letter.user, " Won")
+                    }
+                    if(letter.times === 3) {
+                        console.log("Yey, player: ", letter.user, " Won")
+                    }
+                })
+                console.log({gameField})
+                // Call for switching players
                 switchPlayers()
             }
         }
@@ -42,6 +102,7 @@ function App() {
         checkGridResults()
     }, [playedGrid])
 
+    // Switch players
     const switchPlayers = () => {
         if(player === "userA") {
             setPlayer ("userB")
