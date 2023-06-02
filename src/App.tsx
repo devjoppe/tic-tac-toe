@@ -22,6 +22,34 @@ function App() {
         setGameGrid(data)
     }, [])
 
+    useEffect(() => {
+        // Checking grid results
+        const checkGridResults = () => {
+            // Get the checked by the player
+            if(playedGrid && playedGrid.length != 0) {
+                //console.log({playedGrid})
+                console.log({player})
+                const playerGrids = playedGrid.map(grid => {
+                    if(grid.user === player) {
+                        return grid
+                    }
+                }).filter(Boolean)
+                console.log({playerGrids})
+                switchPlayers()
+            }
+        }
+        // Call to check the players results with played grids
+        checkGridResults()
+    }, [playedGrid])
+
+    const switchPlayers = () => {
+        if(player === "userA") {
+            setPlayer ("userB")
+        } else {
+            setPlayer ("userA")
+        }
+    }
+
     const handleClick = (user:string, col:string, row:string, id:number, checked:boolean|undefined) => {
         if(checked) {
             return
@@ -30,8 +58,6 @@ function App() {
         savePlayedGrid(user, col, row, id)
         // Call Update gameGrid with new game data
         updateGameGrid(id)
-        // Call Switch player
-        switchPlayer()
     }
 
     // Save played grids
@@ -44,15 +70,7 @@ function App() {
             user: user
         }]
         setPlayedGrid(newPlayed)
-    }
-
-    // Switch player
-    const switchPlayer = () => {
-        if(player === "userA") {
-            setPlayer("userB")
-        } else {
-            setPlayer("userA")
-        }
+        // Call check grid results
     }
 
     const updateGameGrid = (id:number) => {
@@ -66,9 +84,9 @@ function App() {
         setGameGrid(updateGrid)
     }
 
-    console.log({player})
-    console.log({playedGrid})
-    console.log({gameGrid})
+    //console.log({player})
+    //console.log({playedGrid})
+    //console.log({gameGrid})
 
     return (
         <>
