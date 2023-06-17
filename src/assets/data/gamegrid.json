@@ -4,62 +4,71 @@
     "col": "A",
     "row": "D",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": "LEFT"
   },
   {
     "id": 2,
     "col": "B",
     "row": "D",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": ""
   },
   {
     "id": 3,
     "col": "C",
     "row": "D",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": "RIGHT"
   },
   {
     "id": 4,
     "col": "A",
     "row": "E",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": ""
   },
   {
     "id": 5,
     "col": "B",
     "row": "E",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": "MIDDLE"
   },
   {
     "id": 6,
     "col": "C",
     "row": "E",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": ""
   },
   {
     "id": 7,
     "col": "A",
     "row": "F",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": "RIGHT"
   },
   {
     "id": 8,
     "col": "B",
     "row": "F",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": ""
   },
   {
     "id": 9,
     "col": "C",
     "row": "F",
     "checked": false,
-    "user": "none"
+    "user": "none",
+    "line": "LEFT"
   }
 ]
