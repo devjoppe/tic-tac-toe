@@ -3,6 +3,10 @@ import './assets/style/css/style.css'
 
 import data from './assets/data/gamegrid.json'
 import {useEffect, useState} from "react";
+import {Route, Routes, useNavigate} from "react-router-dom";
+import StartPage from "./pages/StartPage.tsx";
+import GamePage from "./pages/GamePage.tsx";
+import FourOhFour from "./pages/FourOhFour.tsx";
 
 interface GameGridInt {
     id: number,
@@ -22,6 +26,12 @@ interface GameFieldInt {
 }
 
 function App() {
+
+    // New game
+    const [isCPU, setIsCPU] = useState<boolean|null>(null)
+    const [mark, setMark] = useState<number|null>(null)
+
+    const navigate = useNavigate()
 
     const [gameGrid, setGameGrid] = useState<GameGridInt[]>([])
     const [playedGrid, setPlayedGrid] = useState<GameGridInt[]>([])
@@ -86,6 +96,15 @@ function App() {
             user: ""
         },
     ]
+
+    // Start a new game - Clean slate
+    const newGame = (isCPU:boolean, mark:number) => {
+        setMark(mark)
+        setIsCPU(isCPU)
+        if(mark && isCPU) {
+            navigate('/game')
+        }
+    }
 
     useEffect(() => {
         setGameGrid(data)
@@ -200,6 +219,11 @@ function App() {
 
     return (
         <>
+            <Routes>
+                <Route path="/" element={<StartPage newGame={newGame} />} />
+                <Route path="/game" element={<GamePage isCPU={isCPU} mark={mark}/>} />
+                <Route path="*" element={<FourOhFour />} />
+            </Routes>
             <div className="parent">
                 {gameGrid && gameGrid.map(div => (
                     <div key={div.id} onClick={() => handleClick(player, div.col, div.row, div.id, div.checked, div.line)} className={`checked ${div.user}`}>{div.col} {div.row}</div>
