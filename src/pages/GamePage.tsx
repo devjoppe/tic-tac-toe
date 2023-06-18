@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import GameBoard from "../components/GameBoard.tsx";
 
 interface IProp {
     isCPU: boolean|null,
@@ -17,11 +18,11 @@ const GamePage:React.FC<IProp> = ({isCPU, mark}) => {
             return
         }
         console.log(isCPU, mark)
-    }, [isCPU, mark])
+    }, [isCPU, mark, navigate])
 
     return(
         <div>
-            GAMEPAGE
+            <GameBoard isCPU={isCPU} mark={mark} />
         </div>
     )
 }

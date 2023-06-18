@@ -8,8 +8,6 @@ const StartPage:React.FC<IProp> = ({newGame}) => {
 
     const [mark, setMark] = useState<number>(1)
 
-    console.log(mark)
-
     const saveSettings = (isCPU:boolean) => {
         newGame(isCPU, mark)
     }
@@ -18,7 +16,7 @@ const StartPage:React.FC<IProp> = ({newGame}) => {
         <div>
             <div>
                 <button onClick={() => setMark(1)}>MARK X</button>
-                <button onClick={() => setMark(0)}>MARK O</button>
+                <button onClick={() => setMark(2)}>MARK O</button>
             </div>
             <div>
                 <button onClick={() => saveSettings(true)}>New Game (VS CPU)</button>
