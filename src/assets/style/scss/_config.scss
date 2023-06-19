@@ -16,16 +16,19 @@ body {
 
 .checked {
   cursor: pointer;
-  &.none {
-    background-color: yellowgreen;
-  }
-  &.\1 {
-    background-color: blue;
-  }
-  &.\2 {
-    background-color: deeppink;
-  }
   &:hover {
     opacity: 0.8;
   }
+}
+
+[data-target="0"] {
+  background-color: lightgoldenrodyellow;
+}
+
+[data-target="1"] {
+  background-color: lightgreen;
+}
+
+[data-target="2"] {
+  background-color: lightsalmon;
 }
