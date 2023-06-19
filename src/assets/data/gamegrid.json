@@ -4,7 +4,7 @@
     "col": "A",
     "row": "D",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": "LEFT"
   },
   {
@@ -12,7 +12,7 @@
     "col": "B",
     "row": "D",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": ""
   },
   {
@@ -20,7 +20,7 @@
     "col": "C",
     "row": "D",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": "RIGHT"
   },
   {
@@ -28,7 +28,7 @@
     "col": "A",
     "row": "E",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": ""
   },
   {
@@ -36,7 +36,7 @@
     "col": "B",
     "row": "E",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": "MIDDLE"
   },
   {
@@ -44,7 +44,7 @@
     "col": "C",
     "row": "E",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": ""
   },
   {
@@ -52,7 +52,7 @@
     "col": "A",
     "row": "F",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": "RIGHT"
   },
   {
@@ -60,7 +60,7 @@
     "col": "B",
     "row": "F",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": ""
   },
   {
@@ -68,7 +68,7 @@
     "col": "C",
     "row": "F",
     "checked": false,
-    "user": "none",
+    "user": 0,
     "line": "LEFT"
   }
 ]

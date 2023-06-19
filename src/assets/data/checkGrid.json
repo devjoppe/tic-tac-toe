@@ -1,0 +1,56 @@
+[
+  {
+    "grid": "A",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  },
+  {
+    "grid": "B",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  },
+  {
+    "grid": "C",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  },
+  {
+    "grid": "D",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  },
+  {
+    "grid": "E",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  },
+  {
+    "grid": "F",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  },
+  {
+    "grid": "RIGHT",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  },
+  {
+    "grid": "LEFT",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  },
+  {
+    "grid": "MIDDLE",
+    "times": 0,
+    "lines": 0,
+    "user": ""
+  }
+]

@@ -1,5 +1,5 @@
 body {
-  background-color: red;
+  background-color: lightgrey;
 }
 
 .parent {
@@ -19,10 +19,10 @@ body {
   &.none {
     background-color: yellowgreen;
   }
-  &.userA {
+  &.\1 {
     background-color: blue;
   }
-  &.userB {
+  &.\2 {
     background-color: deeppink;
   }
   &:hover {
