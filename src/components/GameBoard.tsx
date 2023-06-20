@@ -3,10 +3,10 @@ import React, {useEffect, useState} from "react";
 import GameHeading from "./GameHeading.tsx";
 import GameScore from "./GameScore.tsx";
 import {cpuTurn} from "../functions/cpuTurn.ts";
-import {GameGridInt} from "../interfaces/GameInt.ts";
+import {GameGridInt, PlayedGridInt} from "../interfaces/GameInt.ts";
 import {checkPlayedGrid} from "../functions/checkPlayedGrid.ts";
-import {Simulate} from "react-dom/test-utils";
-import change = Simulate.change;
+import {switchPlayers} from "../functions/switchPlayers.ts";
+import {playedGridCheck} from "../functions/checkResult.ts";
 
 interface IProp {
     mark: number|null,
@@ -20,7 +20,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [isCPUTurn, setIsCPUTurn] = useState(false)
 
     const [gameGrid, setGameGrid] = useState<GameGridInt[]>(dataGameGrid)
-    const [playedGrid, setPlayedGrid] = useState<GameGridInt[]>([])
+    const [playedGrid, setPlayedGrid] = useState<PlayedGridInt[]>([])
 
     // Set start players
     // Player 1 is always starting.
@@ -81,7 +81,15 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         console.log("User/CPU clicked: ", gridId)
         console.log("GameGrid before functions: ", gameGrid)
         setGameGrid(checkPlayedGrid(gameGrid, gridId, player))
+        // Construct the grid check for the results
+        const checkPlayedGridRes = playedGridCheck(playedGrid, gameGrid, gridId, player)
+        // Need to setPlayedGrid(checkPlayedGridRes) --> To store the value for the next round
+        // Send the value to check result. Return player and false or true
+        // const gameResult = gameResult(checkPlayedGridRes)
+        // If true -> excecute the result DIV with results - Thinking of a module that shows if true with some passing data.
+
         changePlayer()
+
         //if(playedGridRes) {
             // setPlayedGrid(playedGridRes)
             // setGameGrid(updateGameGrid(gameGrid))
@@ -101,6 +109,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         } else {
             setIsCPUTurn(true)
         }
+        setPlayer(switchPlayers(player))
     }
 
 

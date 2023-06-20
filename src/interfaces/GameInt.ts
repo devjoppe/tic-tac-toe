@@ -7,7 +7,7 @@ export interface GameGridInt {
     user: number,
 }
 
-export interface CheckGameGridInt {
+export interface PlayedGridInt {
     grid: string,
     line: string,
     times: number,
