@@ -7,7 +7,7 @@ import {cpuTurn} from "../functions/cpuTurn.ts";
 import {GameGridInt, PlayedGridInt} from "../interfaces/GameInt.ts";
 import {checkPlayedGrid} from "../functions/checkPlayedGrid.ts";
 import {switchPlayers} from "../functions/switchPlayers.ts";
-import {playedGridCheck} from "../functions/checkResult.ts";
+import {checkResult, playedGridCheck} from "../functions/checkResult.ts";
 
 interface IProp {
     mark: number|null,
@@ -83,7 +83,11 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         console.log("GameGrid before functions: ", gameGrid)
         setGameGrid(checkPlayedGrid(gameGrid, gridId, player))
         // Construct the grid check for the results
-        setPlayedGrid(playedGridCheck(playedGrid, gameGrid, gridId, player))
+        const storePlayedGrid = playedGridCheck(playedGrid, gameGrid, gridId, player)
+        console.log("PLAYED GRID: ", storePlayedGrid)
+        setPlayedGrid(storePlayedGrid)
+        console.log("Check result: ", checkResult(storePlayedGrid))
+        setIsResult(checkResult(storePlayedGrid))
         // Need to setPlayedGrid(checkPlayedGridRes) --> To store the value for the next round
         // Send the value to check result. Return player and false or true
 
