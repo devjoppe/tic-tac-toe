@@ -3,54 +3,54 @@
     "grid": "A",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   },
   {
     "grid": "B",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   },
   {
     "grid": "C",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   },
   {
     "grid": "D",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   },
   {
     "grid": "E",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   },
   {
     "grid": "F",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   },
   {
     "grid": "RIGHT",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   },
   {
     "grid": "LEFT",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   },
   {
     "grid": "MIDDLE",
     "times": 0,
     "lines": 0,
-    "user": ""
+    "user": 0
   }
 ]

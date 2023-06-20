@@ -9,7 +9,6 @@ export interface GameGridInt {
 
 export interface PlayedGridInt {
     grid: string,
-    line: string,
     times: number,
     lines: number,
     user: number

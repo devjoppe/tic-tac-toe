@@ -1,4 +1,5 @@
 import dataGameGrid from '../assets/data/gamegrid.json'
+import playedGridData from '../assets/data/checkGrid.json'
 import React, {useEffect, useState} from "react";
 import GameHeading from "./GameHeading.tsx";
 import GameScore from "./GameScore.tsx";
@@ -18,9 +19,9 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [player, setPlayer] = useState(1)
     const [isPlayerTurn, setIsPlayerTurn] = useState(false)
     const [isCPUTurn, setIsCPUTurn] = useState(false)
-
     const [gameGrid, setGameGrid] = useState<GameGridInt[]>(dataGameGrid)
-    const [playedGrid, setPlayedGrid] = useState<PlayedGridInt[]>([])
+    const [playedGrid, setPlayedGrid] = useState<PlayedGridInt[]>(playedGridData)
+    const [isResult, setIsResult] = useState(false)
 
     // Set start players
     // Player 1 is always starting.
@@ -82,10 +83,12 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         console.log("GameGrid before functions: ", gameGrid)
         setGameGrid(checkPlayedGrid(gameGrid, gridId, player))
         // Construct the grid check for the results
-        const checkPlayedGridRes = playedGridCheck(playedGrid, gameGrid, gridId, player)
+        setPlayedGrid(playedGridCheck(playedGrid, gameGrid, gridId, player))
         // Need to setPlayedGrid(checkPlayedGridRes) --> To store the value for the next round
         // Send the value to check result. Return player and false or true
+
         // const gameResult = gameResult(checkPlayedGridRes)
+
         // If true -> excecute the result DIV with results - Thinking of a module that shows if true with some passing data.
 
         changePlayer()
