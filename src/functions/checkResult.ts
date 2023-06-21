@@ -1,15 +1,13 @@
 import {GameGridInt, PlayedGridInt} from "../interfaces/GameInt.ts";
+import playedGridData from '../assets/data/checkGrid.json'
 
-export const playedGridCheck = (playedGrid:PlayedGridInt[], gameGrid:GameGridInt[], gridId:number, player:number) => {
+export const playedGridCheck = (gameGrid:GameGridInt[], player:number) => {
     // Construct a counter to check when someone has won!
     const filterGrid:GameGridInt[] = gameGrid.filter(grid => grid.user == player)
-
-    console.log("FILTERED GRID: ", filterGrid)
-
-    // Start with an empty array:
+    const newPlayedGrid:PlayedGridInt[] = JSON.parse(JSON.stringify(playedGridData))
 
     filterGrid.forEach(grid => {
-        playedGrid.map(played => {
+        newPlayedGrid.map(played => {
             if(grid && played.grid === grid.col || grid && played.grid === grid.row || grid && played.grid === grid.line) {
                 played.times +=1
                 played.user = player
@@ -20,7 +18,7 @@ export const playedGridCheck = (playedGrid:PlayedGridInt[], gameGrid:GameGridInt
             }
         })
     })
-    return playedGrid
+    return newPlayedGrid
 }
 
 export const checkResult = (playedGrid:PlayedGridInt[]) => {
@@ -29,19 +27,20 @@ export const checkResult = (playedGrid:PlayedGridInt[]) => {
     let checkMiddle = false
     playedGrid.forEach(item => {
         if(item.times === 3) {
-            console.log("Win!!")
+            console.log("Win - Hor - Ver")
             res = true
         }
         if(item.grid === 'MIDDLE' && item.times === 1) {
             checkMiddle = true
+            console.log("MIDDLE:", checkMiddle)
         }
-        const checkLine:string[] = ['LEFT', 'RIGHT']
-        checkLine.forEach(line => {
-            if(line === item.grid && item.lines === 2 && checkMiddle) {
-                console.log("Win!! LINES")
-                res = true
-            }
-        })
     })
+    const checkLine: string[] = ['LEFT', 'RIGHT'];
+    checkLine.forEach(line => {
+        if (playedGrid.some(item => item.grid === line && item.lines === 2 && checkMiddle)) {
+            console.log("Win - Lines")
+            res = true;
+        }
+    });
     return res
 }
