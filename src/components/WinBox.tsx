@@ -1,7 +1,14 @@
-const WinBox = () => {
+import React from "react";
+
+interface IProp {
+    playAgain: () => void
+}
+
+const WinBox:React.FC<IProp> = ({playAgain}) => {
     return(
         <div>
-            WIN SCREEN - Play Again...
+            WIN SCREEN
+            <button onClick={playAgain}>Next Round</button>
         </div>
     )
 }

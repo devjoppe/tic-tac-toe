@@ -20,7 +20,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [player, setPlayer] = useState(1)
     const [isPlayerTurn, setIsPlayerTurn] = useState(false)
     const [isCPUTurn, setIsCPUTurn] = useState(false)
-    const [gameGrid, setGameGrid] = useState<GameGridInt[]>(dataGameGrid)
+    const [gameGrid, setGameGrid] = useState<GameGridInt[]>(JSON.parse(JSON.stringify(dataGameGrid)))
     const [isResult, setIsResult] = useState(false)
 
     // Set start players
@@ -54,6 +54,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     // CPU function:
     // -> Check if the CPU is playing and if its turn.
     useEffect(() => {
+        console.log("What does the gameGrid say: ", gameGrid)
         console.log("Check if it is the CPU players turn?")
         console.log("Who's turn is it? CPU: ", isCPUTurn, "Player: ", isPlayerTurn)
         console.log("Mark: ", mark)
@@ -139,6 +140,16 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         setPlayer(switchPlayers(player))
     }
 
+    const playAgain = () => {
+        console.log("Play another round")
+        // Reset all game data
+        setPlayer(1)
+        setIsPlayerTurn(false)
+        setIsCPUTurn(false)
+        setGameGrid(JSON.parse(JSON.stringify(dataGameGrid)))
+        setIsResult(false)
+    }
+
 
     return(
         <div>
@@ -146,7 +157,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                 <GameHeading />
             </div>
             <div>Player turn: {player}</div>
-            {isResult && <WinBox />}
+            {isResult && <WinBox playAgain={playAgain}/>}
             <div className="parent">
                 {gameGrid && gameGrid.map(div => (
                     <div key={div.id}
