@@ -27,7 +27,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     // Player 1 is always starting.
     // Check if it is a CPU game or not, then set players
     useEffect(() => {
-        console.log("WHO: ", mark)
+        console.log("WHO: ", mark , "CPU: ", isCPU)
         // Start the Player vs. CPU game
         if(isCPU && mark) {
             console.log("It is a CPU game")
@@ -44,9 +44,10 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
             }
         }
         // Start Player vs. Player game. Player 1 always start
-        if(!isCPU && mark) {
+        /* if(!isCPU && mark) {
+            console.log("It is a player vs. player game...")
             setIsPlayerTurn(true)
-        }
+        }*/
 
     }, [isCPU, mark])
 
@@ -55,6 +56,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     useEffect(() => {
         console.log("Check if it is the CPU players turn?")
         console.log("Who's turn is it? CPU: ", isCPUTurn, "Player: ", isPlayerTurn)
+        console.log("Mark: ", mark)
         if(isCPU && isCPUTurn && !isResult) {
             setTimeout(() => {
                 console.log("Setting time out (3 sec)")
@@ -66,9 +68,10 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                 }
             }, 3000)
         } else {
-            return
+            console.log("Does it check here?")
+            setIsPlayerTurn(true)
         }
-    }, [isCPU, isCPUTurn])
+    }, [isCPU, isCPUTurn, isPlayerTurn])
 
     // A count-down (3sec) before doing an applying the grid calculation.
     // Grid calculation on what the CPU will use as the variables for col, row, line and id.
@@ -121,6 +124,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     }, [isResult, isCPU])
 
     const changePlayer = () => {
+        console.log("Does switch player run?")
         if(isCPU) {
             if(isCPUTurn) {
                 setIsPlayerTurn(true)
@@ -129,9 +133,9 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                 setIsCPUTurn(true)
                 setIsPlayerTurn(false)
             }
-        } else {
+        } /* else {
             setIsCPUTurn(true)
-        }
+        }*/
         setPlayer(switchPlayers(player))
     }
 

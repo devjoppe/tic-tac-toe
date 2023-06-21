@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import GameBoard from "../components/GameBoard.tsx";
 
 interface IProp {
-    isCPU: boolean|null,
+    isCPU: boolean,
     mark: number|null
 }
 
@@ -12,9 +12,9 @@ const GamePage:React.FC<IProp> = ({isCPU, mark}) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(!isCPU || !mark) {
+        if(!isCPU &&  !mark) {
             console.error("Game did not start correctly")
-            navigate('*')
+            navigate('/error')
             return
         }
         console.log(isCPU, mark)

@@ -18,7 +18,7 @@ function App() {
     const newGame = (isCPU:boolean, mark:number) => {
         setMark(mark)
         setIsCPU(isCPU)
-        if(mark && isCPU) {
+        if(mark && isCPU || !isCPU) {
             navigate('/game')
         }
     }
