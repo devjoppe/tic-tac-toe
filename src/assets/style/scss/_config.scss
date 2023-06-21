@@ -1,5 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+// Colors
+$color-green-main: #31C3BD;
+$color-green-light: #65E9E4;
+$color-yellow-main: #F2B137;
+$color-yellow-light: #FFC860;
+$color-dark-main: #1A2A33;
+$color-dark-secondary: #1F3641;
+$color-grey-main: #A8BFC9;
+$color-grey-light: #DBE8ED;
+
 body {
-  background-color: lightgrey;
+  background-color: $color-dark-main;
+  font-family: 'Outfit', sans-serif;
 }
 
 .parent {
