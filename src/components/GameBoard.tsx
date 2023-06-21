@@ -161,7 +161,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                 ))}
             </div>
             <div>
-                <GameScore />
+                <GameScore gameComplete={isResult} player={player}/>
             </div>
         </div>
     )

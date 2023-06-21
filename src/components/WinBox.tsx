@@ -1,7 +1,7 @@
 const WinBox = () => {
     return(
         <div>
-            WIN SCREEN
+            WIN SCREEN - Play Again...
         </div>
     )
 }
