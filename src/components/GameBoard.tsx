@@ -1,5 +1,5 @@
 import dataGameGrid from '../assets/data/gamegrid.json'
-import playedGridData from '../assets/data/checkGrid.json'
+// import playedGridData from '../assets/data/checkGrid.json'
 import React, {useEffect, useState} from "react";
 import GameHeading from "./GameHeading.tsx";
 import GameScore from "./GameScore.tsx";
@@ -21,112 +21,83 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [isPlayerTurn, setIsPlayerTurn] = useState(false)
     const [isCPUTurn, setIsCPUTurn] = useState(false)
     const [gameGrid, setGameGrid] = useState<GameGridInt[]>(JSON.parse(JSON.stringify(dataGameGrid)))
+    const [round, setRound] = useState(1)
     const [isResult, setIsResult] = useState(false)
 
     // Set start players
     // Player 1 is always starting.
     // Check if it is a CPU game or not, then set players
     useEffect(() => {
-        console.log("WHO: ", mark , "CPU: ", isCPU)
-        // Start the Player vs. CPU game
-        if(isCPU && mark) {
-            console.log("It is a CPU game")
+       /*  if(isCPU && mark) {
+            // If it is a CPU game
             if(mark === 1) {
                 // Player is starting
-                console.log("Player is starting")
                 setIsPlayerTurn(true)
             } else {
-                console.log("CPU is starting")
+               // CPU is starting
                 setIsCPUTurn(true)
-                // CPU is starting
-                // const res = cpuTurn(gameGrid)
-                // Run the function that handles the CPU logic
             }
-        }
-        // Start Player vs. Player game. Player 1 always start
-        /* if(!isCPU && mark) {
-            console.log("It is a player vs. player game...")
-            setIsPlayerTurn(true)
         }*/
-
+        // Testing out some other code ->
+        if (isCPU && mark) {
+            setIsPlayerTurn(mark === 1);
+            setIsCPUTurn(mark !== 1);
+        }
     }, [isCPU, mark])
 
-    // CPU function:
-    // -> Check if the CPU is playing and if its turn.
+    // Check if the CPU is playing and if its turn.
     useEffect(() => {
-        console.log("What does the gameGrid say: ", gameGrid)
-        console.log("Check if it is the CPU players turn?")
-        console.log("Who's turn is it? CPU: ", isCPUTurn, "Player: ", isPlayerTurn)
-        console.log("Mark: ", mark)
         if(isCPU && isCPUTurn && !isResult) {
             setTimeout(() => {
-                console.log("Setting time out (3 sec)")
-                console.log("Calculating CPU turn")
-                const res = cpuTurn(gameGrid) // <- This should return the chosen grid.
+                // Computing the CPU move
+                const res = cpuTurn(gameGrid)
                 if(res){
-                    console.log("CPU plays: ", res)
                     handleClick(res)
                 }
             }, 3000)
         } else {
-            console.log("Does it check here?")
             setIsPlayerTurn(true)
         }
     }, [isCPU, isCPUTurn, isPlayerTurn])
 
-    // A count-down (3sec) before doing an applying the grid calculation.
-    // Grid calculation on what the CPU will use as the variables for col, row, line and id.
-    // Then, need to call the handleClick function with all the variables.
-    // Store in playedGrid
-    // Switch player
-    // And repeat ->
-
-    // (player: number, col: string, row: string, line: string, id: number, checked: boolean)
+    // Player and CPU runs handleClick on each turn
     const handleClick = (gridId:number) => {
-        console.log("User/CPU clicked: ", gridId)
-        console.log("GameGrid before functions: ", gameGrid)
-        console.log("Is it not empty?: ", playedGridData)
         setGameGrid(checkPlayedGrid(gameGrid, gridId, player))
+
         // Construct the grid check for the results
         const storePlayedGrid = playedGridCheck(gameGrid, player)
-        console.log("PLAYED GRID: ", storePlayedGrid)
-        //setPlayedGrid(storePlayedGrid)
-        // console.log("Check result: ", checkResult(storePlayedGrid))
         const result = checkResult(storePlayedGrid)
+
+        // Set the result from the check
         setIsResult(result)
-        // Need to setPlayedGrid(checkPlayedGridRes) --> To store the value for the next round
-        // Send the value to check result. Return player and false or true
-
-        // const gameResult = gameResult(checkPlayedGridRes)
-
-        // If true -> excecute the result DIV with results - Thinking of a module that shows if true with some passing data.
-        if(!result) {
-            changePlayer()
+        // If it is a tie
+        console.log("Count round: ", round)
+        if(round === 9) {
+            console.log("Does this run inside round")
+            setIsResult(true)
         }
 
-        //if(playedGridRes) {
-            // setPlayedGrid(playedGridRes)
-            // setGameGrid(updateGameGrid(gameGrid))
-        //}
-        // Check if the CPU is playing and set who's next
+        // If false, change player and count rounds
+        if(!result) {
+            setRound(current => current + 1)
+            changePlayer()
+        }
     }
 
+    // Handles the result. If true the round is complete
     useEffect(() => {
         if(isResult) {
-            console.log("Does this run?")
-            console.log("SHOW RESULT, START OVER THE GAME")
             if(isCPU) {
                 setIsCPUTurn(false)
             }
             setIsPlayerTurn(false)
-            console.log("Which player won? ", player)
             return
         }
     }, [isResult, isCPU])
 
+    // Function to change player each round
     const changePlayer = () => {
-        console.log("Does switch player run?")
-        if(isCPU) {
+       /* if(isCPU) {
             if(isCPUTurn) {
                 setIsPlayerTurn(true)
                 setIsCPUTurn(false)
@@ -134,22 +105,24 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                 setIsCPUTurn(true)
                 setIsPlayerTurn(false)
             }
-        } /* else {
-            setIsCPUTurn(true)
         }*/
+        // Testing out this code:
+        if (isCPU) {
+            setIsPlayerTurn((prevIsPlayerTurn) => !prevIsPlayerTurn);
+            setIsCPUTurn((prevIsCPUTurn) => !prevIsCPUTurn);
+        }
         setPlayer(switchPlayers(player))
     }
 
     const playAgain = () => {
-        console.log("Play another round")
         // Reset all game data
         setPlayer(1)
         setIsPlayerTurn(false)
         setIsCPUTurn(false)
         setGameGrid(JSON.parse(JSON.stringify(dataGameGrid)))
+        setRound(1)
         setIsResult(false)
     }
-
 
     return(
         <div>
@@ -157,7 +130,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                 <GameHeading />
             </div>
             <div>Player turn: {player}</div>
-            {isResult && <WinBox playAgain={playAgain}/>}
+            {isResult && <WinBox playAgain={playAgain} round={round}/>}
             <div className="parent">
                 {gameGrid && gameGrid.map(div => (
                     <div key={div.id}
@@ -172,7 +145,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                 ))}
             </div>
             <div>
-                <GameScore gameComplete={isResult} player={player}/>
+                <GameScore gameComplete={isResult} player={player} round={round}/>
             </div>
         </div>
     )
