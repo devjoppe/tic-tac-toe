@@ -23,6 +23,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [gameGrid, setGameGrid] = useState<GameGridInt[]>(JSON.parse(JSON.stringify(dataGameGrid)))
     const [round, setRound] = useState(1)
     const [isResult, setIsResult] = useState(false)
+    const [isWaitingForCPU, setIsWaitingForCPU] = useState(false)
 
     // Set start players
     // Player 1 is always starting.
@@ -48,10 +49,12 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     // Check if the CPU is playing and if its turn.
     useEffect(() => {
         if(isCPU && isCPUTurn && !isResult) {
+            setIsWaitingForCPU(true)
             setTimeout(() => {
                 // Computing the CPU move
                 const res = cpuTurn(gameGrid)
                 if(res){
+                    setIsWaitingForCPU(false)
                     handleClick(res)
                 }
             }, 3000)
@@ -71,9 +74,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         // Set the result from the check
         setIsResult(result)
         // If it is a tie
-        console.log("Count round: ", round)
         if(round === 9) {
-            console.log("Does this run inside round")
             setIsResult(true)
         }
 
@@ -127,10 +128,11 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     return(
         <div>
             <div>
-                <GameHeading />
+                <GameHeading player={player} />
             </div>
             <div>Player turn: {player}</div>
             {isResult && <WinBox playAgain={playAgain} round={round}/>}
+            {isWaitingForCPU && "WAITING FOR CPU MOVE"}
             <div className="parent">
                 {gameGrid && gameGrid.map(div => (
                     <div key={div.id}

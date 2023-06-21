@@ -20,7 +20,6 @@ const GameScore:React.FC<IProp> = ({gameComplete, player, round}) => {
                 setPlayerTwo(current => current+1)
             }
             if(round === 10) {
-                console.log("It is a tie round")
                 return
             }
         }
