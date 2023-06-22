@@ -27,8 +27,8 @@ const StartPage:React.FC<IProp> = ({newGame}) => {
                 <span className="info">Remember: X goes first</span>
             </div>
             <div className="choose-game">
-                <button onClick={() => saveSettings(true)}>New Game (VS CPU)</button>
-                <button onClick={() => saveSettings(false)}>New Game (VS PLAYER)</button>
+                <button className="cpu" onClick={() => saveSettings(true)}><span>New Game (VS CPU)</span></button>
+                <button className="player" onClick={() => saveSettings(false)}><span>New Game (VS PLAYER)</span></button>
             </div>
         </div>
     )

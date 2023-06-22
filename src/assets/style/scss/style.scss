@@ -30,4 +30,19 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    .cpu {
+        margin-bottom: 24px;
+        background: config.$color-yellow-light;
+        color: config.$color-yellow-main;
+        span {
+            color: config.$color-dark-main;
+        }
+    }
+    .player {
+        background: config.$color-green-light;
+        color: config.$color-green-main;
+        span {
+            color: config.$color-dark-main;
+        }
+    }
 }

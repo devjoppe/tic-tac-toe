@@ -13,6 +13,7 @@ $color-grey-light: #DBE8ED;
 body {
   background-color: $color-dark-main;
   font-family: 'Outfit', sans-serif;
+  letter-spacing: 1px;
   padding: 0;
   margin: 0 24px;
 }
@@ -46,4 +47,19 @@ body {
 
 [data-target="2"] {
   background-color: lightsalmon;
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 1px;
+  border-radius: 15px;
+  padding: 14px 0;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 8px 0 0;
+  -webkit-box-shadow: 0 8px 0 0;
+  -moz-box-shadow: 0 8px 0 0;
 }
