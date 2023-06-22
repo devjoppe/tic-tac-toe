@@ -12,7 +12,7 @@ import WinBox from "./WinBox.tsx";
 
 interface IProp {
     mark: number|null,
-    isCPU: boolean
+    isCPU: boolean|null
 }
 
 const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {

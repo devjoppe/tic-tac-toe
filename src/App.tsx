@@ -26,7 +26,7 @@ function App() {
     return (
         <Routes>
             <Route path="/" element={<StartPage newGame={newGame} />} />
-            <Route path="/game" element={<GamePage isCPU={isCPU} mark={mark}/>} />
+            <Route path="/game" element={<GamePage isCPU={isCPU != null && isCPU} mark={mark}/>} />
             <Route path="*" element={<FourOhFour />} />
         </Routes>
     )

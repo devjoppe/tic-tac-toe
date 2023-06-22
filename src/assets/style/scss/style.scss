@@ -1,1 +1,33 @@
 @use 'config';
+
+.start-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pick-players {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: config.$color-dark-secondary;
+    width: 100%;
+    margin: 32px 0;
+    padding: 24px;
+    border-radius: 15px;
+    span {
+        font-weight: bold;
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: config.$color-grey-main;
+    }
+}
+
+.choose-game {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
