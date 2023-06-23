@@ -17,12 +17,43 @@
     width: 100%;
     margin: 32px 0;
     padding: 24px;
-    border-radius: 15px;
+    border-radius: 10px;
+    .buttons {
+        margin: 24px 0;
+        background: config.$color-dark-main;
+        width: inherit;
+        border-radius: 15px;
+        padding: 9px;
+        box-sizing: border-box;
+        button {
+            padding: 0;
+            background: none;
+            border-radius: 10px;
+            width: 50%;
+            height: 54px;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            &.selected {
+                background: config.$color-grey-main;
+            }
+            img {
+                margin-top: 4px;
+                height: 32px;
+                width: 32px;
+            }
+        }
+    }
     span {
         font-weight: bold;
         font-size: 1rem;
         text-transform: uppercase;
         color: config.$color-grey-main;
+        &.info {
+            font-weight: normal;
+            font-size: 14px;
+            opacity: 0.5;
+        }
     }
 }
 

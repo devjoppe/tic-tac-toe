@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 import logo from '../assets/images/logo.svg'
+import iconXSelected from '../assets/images/start-x-icon-selected.svg'
+import iconX from '../assets/images/start-x-icon.svg'
+import iconOSelected from '../assets/images/start-o-icon-selected.svg'
+import iconO from '../assets/images/start-o-icon.svg'
 
 interface IProp {
     newGame :(isCPU:boolean, mark:number ) => void
@@ -21,8 +25,8 @@ const StartPage:React.FC<IProp> = ({newGame}) => {
             <div className="pick-players">
                 <span>Pick players 1's mark</span>
                 <div className="buttons">
-                    <button onClick={() => setMark(1)}>MARK X</button>
-                    <button onClick={() => setMark(2)}>MARK O</button>
+                    <button className="selected" onClick={() => setMark(1)}><img className="selected" src={iconXSelected} alt="Player One"/></button>
+                    <button onClick={() => setMark(2)}><img src={iconO} alt="Player Two"/></button>
                 </div>
                 <span className="info">Remember: X goes first</span>
             </div>
