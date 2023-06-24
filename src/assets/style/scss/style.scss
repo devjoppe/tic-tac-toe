@@ -11,10 +11,28 @@
 .game-heading {
     display: flex;
     flex-direction: row;
-    margin: 20px;
+    margin: 20px 20px 46px 20px;
     justify-content: space-between;
+    .restart-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 5px;
+        background: config.$color-grey-main;
+        color: #6B8997;
+        box-shadow: 0 4px 0 0;
+        -webkit-box-shadow: 0 4px 0 0;
+        -moz-box-shadow: 0 4px 0 0;
+        img {
+            height: 16px;
+            width: 16px;
+        }
+    }
     .player-turn {
         display: flex;
+        align-items: center;
         border-radius: 5px;
         padding: 9px 15px;
         background: config.$color-dark-secondary;
