@@ -8,7 +8,6 @@ import {GameGridInt} from "../interfaces/GameInt.ts";
 import {checkPlayedGrid} from "../functions/checkPlayedGrid.ts";
 import {switchPlayers} from "../functions/switchPlayers.ts";
 import {checkResult, playedGridCheck} from "../functions/checkResult.ts";
-import WinBox from "./WinBox.tsx";
 
 interface IProp {
     mark: number|null,
@@ -131,7 +130,6 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
             <div>
                 <GameHeading player={player} />
             </div>
-            {isResult && <WinBox playAgain={playAgain} round={round}/>}
             {isWaitingForCPU && "WAITING FOR CPU MOVE"}
             <div className="parent">
                     {gameGrid && gameGrid.map(div => (
@@ -147,7 +145,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                     ))}
             </div>
             <div>
-                <GameScore gameComplete={isResult} player={player} round={round} mark={mark} isCPU={isCPU} />
+                <GameScore gameComplete={isResult} player={player} round={round} mark={mark} isCPU={isCPU} playAgain={playAgain} />
             </div>
         </div>
     )

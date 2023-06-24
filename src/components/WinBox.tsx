@@ -3,11 +3,11 @@ import xIcon from '../assets/images/icon-x.svg'
 import oIcon from '../assets/images/icon-o.svg'
 
 interface IProp {
-    playAgain: () => void,
+    handlePlayAgain: () => void,
     round: number
 }
 
-const WinBox:React.FC<IProp> = ({playAgain, round}) => {
+const WinBox:React.FC<IProp> = ({handlePlayAgain, round}) => {
 
     const [isTie, setIsTie] = useState(false)
 
@@ -33,8 +33,8 @@ const WinBox:React.FC<IProp> = ({playAgain, round}) => {
                     <button className="quit">
                         <span>Quit</span>
                     </button>
-                    <button className="next-round" onClick={playAgain}>
-                        <span>{isTie ? "Play Again" : "Next Round" }</span>
+                    <button className="next-round" onClick={handlePlayAgain}>
+                        <span>Next Round</span>
                     </button>
                 </div>
             </div>

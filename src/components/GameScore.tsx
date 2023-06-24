@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import WinBox from "./WinBox.tsx";
 
 interface IProp {
     gameComplete: boolean,
@@ -6,9 +7,10 @@ interface IProp {
     round: number,
     mark: number|null
     isCPU: boolean|null
+    playAgain: () => void
 }
 
-const GameScore:React.FC<IProp> = ({gameComplete, player, round, mark, isCPU}) => {
+const GameScore:React.FC<IProp> = ({gameComplete, player, round, mark, isCPU, playAgain}) => {
 
     const [playerOne, setPlayerOne] = useState(0)
     const [playerTwo,setPlayerTwo] = useState(0)
@@ -29,21 +31,28 @@ const GameScore:React.FC<IProp> = ({gameComplete, player, round, mark, isCPU}) =
         }
     }, [gameComplete, player])
 
+    const handlePlayAgain = () => {
+        playAgain()
+    }
+
     return(
-        <div className="score-view">
-            <div className="player_1_score">
-                <span>{isCPU && mark === 1 ? "X (You)" : "X"}</span>
-                <span className="score">{playerOne}</span>
+        <>
+            {gameComplete && <WinBox handlePlayAgain={handlePlayAgain} round={round}/>}
+            <div className="score-view">
+                <div className="player_1_score">
+                    <span>{isCPU && mark === 1 ? "X (You)" : "X"}</span>
+                    <span className="score">{playerOne}</span>
+                </div>
+                <div className="player_ties">
+                    <span>TIES</span>
+                    <span className="score">{ties}</span>
+                </div>
+                <div className="player_2_score">
+                    <span>{isCPU && mark === 2 ? "O (You)" : "O"}</span>
+                    <span className="score">{playerTwo}</span>
+                </div>
             </div>
-            <div className="player_ties">
-                <span>TIES</span>
-                <span className="score">{ties}</span>
-            </div>
-            <div className="player_2_score">
-                <span>{isCPU && mark === 2 ? "O (You)" : "O"}</span>
-                <span className="score">{playerTwo}</span>
-            </div>
-        </div>
+        </>
     )
 }
 
