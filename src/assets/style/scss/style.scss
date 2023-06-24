@@ -163,3 +163,68 @@
         background: config.$color-yellow-main;
     }
 }
+
+.backplate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-screen {
+    background: config.$color-dark-secondary;
+    width: 100%;
+    padding: 48px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    span {
+        color: config.$color-grey-main;
+        margin-bottom: 16px;
+    }
+    .takes-round {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        margin-bottom: 24px;
+        &.playerOne {
+          color: config.$color-green-main;
+        }
+        &.playerTwo {
+            color: config.$color-yellow-main;
+        }
+        img {
+            height: 28px;
+            width: 28px;
+            margin-right: 9px;
+        }
+    }
+    .round-buttons {
+        button {
+            padding: 16px;
+            margin-right: 16px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        span {
+            color: config.$color-dark-secondary;
+        }
+        .quit {
+            background: config.$color-grey-main;
+            color: #6B8997;
+        }
+        .next-round {
+            background: config.$color-yellow-main;
+            color: #CC8B13;
+        }
+    }
+}
