@@ -13,6 +13,10 @@
     flex-direction: row;
     margin: 20px 20px 46px 20px;
     justify-content: space-between;
+    .logo-heading {
+        display: flex;
+        align-items: center;
+    }
     .restart-button {
         display: flex;
         align-items: center;
@@ -36,6 +40,10 @@
         border-radius: 5px;
         padding: 9px 15px;
         background: config.$color-dark-secondary;
+        color: #10212A;
+        box-shadow: 0 4px 0 0;
+        -webkit-box-shadow: 0 4px 0 0;
+        -moz-box-shadow: 0 4px 0 0;
         span {
             font-size: 14px;
             font-weight: bold;
@@ -116,5 +124,42 @@
         span {
             color: config.$color-dark-main;
         }
+    }
+}
+
+.score-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    div {
+        height: 64px;
+        flex: 1;
+        margin-right: 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        &:last-child {
+            margin-right: 0;
+        }
+        span {
+            color: config.$color-dark-main;
+            font-size: 12px;
+            font-weight: bold;
+            &.score {
+                font-size: 20px;
+            }
+        }
+    }
+    .player_1_score {
+        background: config.$color-green-main;
+    }
+    .player_ties {
+        background: config.$color-grey-main;
+    }
+    .player_2_score {
+        background: config.$color-yellow-main;
     }
 }

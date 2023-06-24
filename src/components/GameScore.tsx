@@ -3,13 +3,16 @@ import React, {useEffect, useState} from "react";
 interface IProp {
     gameComplete: boolean,
     player: number,
-    round: number
+    round: number,
+    mark: number|null
+    isCPU: boolean|null
 }
 
-const GameScore:React.FC<IProp> = ({gameComplete, player, round}) => {
+const GameScore:React.FC<IProp> = ({gameComplete, player, round, mark, isCPU}) => {
 
     const [playerOne, setPlayerOne] = useState(0)
     const [playerTwo,setPlayerTwo] = useState(0)
+    const [ties, setTies] = useState(0)
 
     useEffect(() => {
         if(gameComplete) {
@@ -20,16 +23,26 @@ const GameScore:React.FC<IProp> = ({gameComplete, player, round}) => {
                 setPlayerTwo(current => current+1)
             }
             if(round === 10) {
+                setTies(current => current+1)
                 return
             }
         }
     }, [gameComplete, player])
 
     return(
-        <div>
-            <div>Player 1 score: {playerOne}</div>
-            <div>Ties</div>
-            <div>Player 2 score: {playerTwo}</div>
+        <div className="score-view">
+            <div className="player_1_score">
+                <span>{isCPU && mark === 1 ? "X (You)" : "X"}</span>
+                <span className="score">{playerOne}</span>
+            </div>
+            <div className="player_ties">
+                <span>TIES</span>
+                <span className="score">{ties}</span>
+            </div>
+            <div className="player_2_score">
+                <span>{isCPU && mark === 2 ? "O (You)" : "O"}</span>
+                <span className="score">{playerTwo}</span>
+            </div>
         </div>
     )
 }
