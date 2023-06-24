@@ -24,29 +24,44 @@ body {
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0;
   grid-row-gap: 0;
-  div {
-    border: 1px solid grey;
+  .grid-item {
+    display: flex;
+    justify-content: center;
     text-align: center;
+    background: $color-dark-secondary;
+    color: #10212A;
+    padding: 24px;
+    margin: 10%;
+    border-radius: 10px;
+    box-shadow: 0 8px 0 0;
+    -webkit-box-shadow: 0 8px 0 0;
+    -moz-box-shadow: 0 8px 0 0;
   }
 }
 
 .checked {
   cursor: pointer;
+  height: 32px;
+  width: 32px;
   &:hover {
     opacity: 0.8;
   }
 }
 
 [data-target="0"] {
-  background-color: lightgoldenrodyellow;
+  background-image: none;
 }
 
 [data-target="1"] {
-  background-color: lightgreen;
+  background-image: url("../../../assets/images/icon-x.svg");
+  background-size: 32px;
+  background-repeat: no-repeat;
 }
 
 [data-target="2"] {
-  background-color: lightsalmon;
+  background-image: url("../../../assets/images/icon-o.svg");
+  background-size: 32px;
+  background-repeat: no-repeat;
 }
 
 button {

@@ -115,6 +115,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         setPlayer(switchPlayers(player))
     }
 
+    // Reset current and start a new round
     const playAgain = () => {
         // Reset all game data
         setPlayer(1)
@@ -134,17 +135,17 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
             {isResult && <WinBox playAgain={playAgain} round={round}/>}
             {isWaitingForCPU && "WAITING FOR CPU MOVE"}
             <div className="parent">
-                {gameGrid && gameGrid.map(div => (
-                    <div key={div.id}
-                         onClick={() => {
-                             if(isPlayerTurn) {
-                                 handleClick(div.id)
-                             }
-                         }}
-                         className={`checked`} data-target={`${div.user.toString()}`}>
-                            {div.col} {div.row}
-                    </div>
-                ))}
+                    {gameGrid && gameGrid.map(div => (
+                        <div className="grid-item" key={div.id}>
+                            <div onClick={() => {
+                                     if(isPlayerTurn) {
+                                         handleClick(div.id)
+                                     }
+                                 }}
+                                 className={`checked`} data-target={`${div.user.toString()}`}>
+                            </div>
+                        </div>
+                    ))}
             </div>
             <div>
                 <GameScore gameComplete={isResult} player={player} round={round}/>
