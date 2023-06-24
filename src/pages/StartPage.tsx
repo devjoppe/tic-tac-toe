@@ -9,6 +9,21 @@ interface IProp {
     newGame :(isCPU:boolean, mark:number ) => void
 }
 
+const playerSelectMenu = [
+    {
+        mark: 1,
+        icon: iconX,
+        icon_select: iconXSelected,
+        text: "Player One"
+    },
+    {
+        mark: 2,
+        icon: iconO,
+        icon_select: iconOSelected,
+        text: "Player Two"
+    }
+]
+
 const StartPage:React.FC<IProp> = ({newGame}) => {
 
     const [mark, setMark] = useState<number>(1)
@@ -25,8 +40,11 @@ const StartPage:React.FC<IProp> = ({newGame}) => {
             <div className="pick-players">
                 <span>Pick players 1's mark</span>
                 <div className="buttons">
-                    <button className="selected" onClick={() => setMark(1)}><img className="selected" src={iconXSelected} alt="Player One"/></button>
-                    <button onClick={() => setMark(2)}><img src={iconO} alt="Player Two"/></button>
+                    { playerSelectMenu.map(item => (
+                        <button key={item.mark} className={mark === item.mark ? `selected` : ``} onClick={() => setMark(item.mark)}>
+                            <img src={mark === item.mark ? item.icon_select : item.icon} alt={item.text} />
+                        </button>
+                    ))}
                 </div>
                 <span className="info">Remember: X goes first</span>
             </div>
