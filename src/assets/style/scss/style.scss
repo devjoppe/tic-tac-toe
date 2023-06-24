@@ -8,6 +8,29 @@
     align-items: center;
 }
 
+.game-heading {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    justify-content: space-between;
+    .player-turn {
+        display: flex;
+        border-radius: 5px;
+        padding: 9px 15px;
+        background: config.$color-dark-secondary;
+        span {
+            font-size: 14px;
+            font-weight: bold;
+            color: config.$color-grey-light;
+        }
+        img {
+            margin-right: 9px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
 .pick-players {
     display: flex;
     flex-direction: column;

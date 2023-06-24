@@ -131,7 +131,6 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
             <div>
                 <GameHeading player={player} />
             </div>
-            <div>Player turn: {player}</div>
             {isResult && <WinBox playAgain={playAgain} round={round}/>}
             {isWaitingForCPU && "WAITING FOR CPU MOVE"}
             <div className="parent">
