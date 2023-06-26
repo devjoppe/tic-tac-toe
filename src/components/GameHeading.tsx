@@ -6,9 +6,10 @@ import restartIcon from "../assets/images/icon-restart.svg"
 
 interface IProp {
     player: number
+    viewRestartGame: (restart: boolean) => void
 }
 
-const GameHeading:React.FC<IProp> = ({player}) => {
+const GameHeading:React.FC<IProp> = ({player, viewRestartGame}) => {
     return(
         <div className="game-heading">
             <div className="logo-heading"><img src={logo} alt="Logo" /></div>
@@ -17,7 +18,7 @@ const GameHeading:React.FC<IProp> = ({player}) => {
                 <span>TURN</span>
             </div>
             <div className="restart-game">
-                <button className="restart-button">
+                <button className="restart-button" onClick={() => viewRestartGame(true)}>
                     <img src={restartIcon} alt="Restart game" />
                 </button>
             </div>

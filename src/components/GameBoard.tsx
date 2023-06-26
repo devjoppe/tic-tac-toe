@@ -8,6 +8,7 @@ import {GameGridInt} from "../interfaces/GameInt.ts";
 import {checkPlayedGrid} from "../functions/checkPlayedGrid.ts";
 import {switchPlayers} from "../functions/switchPlayers.ts";
 import {checkResult, playedGridCheck} from "../functions/checkResult.ts";
+import QuitBox from "./QuitBox.tsx";
 
 interface IProp {
     mark: number|null,
@@ -23,6 +24,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [round, setRound] = useState(1)
     const [isResult, setIsResult] = useState(false)
     const [isWaitingForCPU, setIsWaitingForCPU] = useState(false)
+    const [restartGame, setRestartGame] = useState(false)
 
     // Set start players
     // Player 1 is always starting.
@@ -125,10 +127,15 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         setIsResult(false)
     }
 
+    const viewRestartGame = (restart:boolean) => {
+        restart ? setRestartGame(true) : setRestartGame(false)
+    }
+
     return(
         <div>
+            { restartGame && <QuitBox viewRestartGame={viewRestartGame} /> }
             <div>
-                <GameHeading player={player} />
+                <GameHeading player={player} viewRestartGame={viewRestartGame} />
             </div>
             {isWaitingForCPU && "WAITING FOR CPU MOVE"}
             <div className="parent">

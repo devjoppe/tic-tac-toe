@@ -195,6 +195,7 @@
         align-items: center;
         font-size: 24px;
         margin-bottom: 24px;
+        color: config.$color-grey-main;
         &.playerOne {
           color: config.$color-green-main;
         }
@@ -211,6 +212,7 @@
         button {
             padding: 16px;
             margin-right: 16px;
+            border-radius: 10px;
             &:last-child {
                 margin-right: 0;
             }

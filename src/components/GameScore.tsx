@@ -10,12 +10,19 @@ interface IProp {
     playAgain: () => void
 }
 
-const GameScore:React.FC<IProp> = ({gameComplete, player, round, mark, isCPU, playAgain}) => {
+const GameScore:React.FC<IProp> = ({
+    gameComplete,
+    player,
+    round,
+    mark,
+    isCPU,
+    playAgain}) => {
 
     const [playerOne, setPlayerOne] = useState(0)
     const [playerTwo,setPlayerTwo] = useState(0)
     const [ties, setTies] = useState(0)
 
+    // Check who won or if tie
     useEffect(() => {
         if(gameComplete) {
             if(player === 1 && round < 10) {
@@ -38,7 +45,7 @@ const GameScore:React.FC<IProp> = ({gameComplete, player, round, mark, isCPU, pl
 
     return(
         <>
-            {gameComplete && <WinBox handlePlayAgain={handlePlayAgain} round={round} player={player} isCPU={isCPU}/>}
+            { gameComplete && <WinBox handlePlayAgain={handlePlayAgain} round={round} player={player} isCPU={isCPU}/> }
             <div className="score-view">
                 <div className="player_1_score">
                     <span>{isCPU && mark === 1 ? "X (You)" : "X"}</span>

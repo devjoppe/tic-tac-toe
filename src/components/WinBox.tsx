@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import xIcon from '../assets/images/icon-x.svg'
 import oIcon from '../assets/images/icon-o.svg'
+import {useNavigate} from "react-router-dom";
 
 interface IProp {
     handlePlayAgain: () => void,
@@ -12,6 +13,8 @@ interface IProp {
 const WinBox:React.FC<IProp> = ({handlePlayAgain, round, player, isCPU}) => {
 
     const [isTie, setIsTie] = useState(false)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         if(round === 10) {
@@ -30,7 +33,7 @@ const WinBox:React.FC<IProp> = ({handlePlayAgain, round, player, isCPU}) => {
                     {!isTie ? "takes the round" : "Round tied"}
                 </div>
                 <div className="round-buttons">
-                    <button className="quit">
+                    <button className="quit" onClick={() => navigate('/')}>
                         <span>Quit</span>
                     </button>
                     <button className="next-round" onClick={handlePlayAgain}>
