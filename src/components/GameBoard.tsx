@@ -1,5 +1,4 @@
 import dataGameGrid from '../assets/data/gamegrid.json'
-// import playedGridData from '../assets/data/checkGrid.json'
 import React, {useEffect, useState} from "react";
 import GameHeading from "./GameHeading.tsx";
 import GameScore from "./GameScore.tsx";
@@ -70,6 +69,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
 
     // Player and CPU runs handleClick on each turn
     const handleClick = (gridId:number) => {
+
         setGameGrid(checkPlayedGrid(gameGrid, gridId, player))
 
         // Construct the grid check for the results
@@ -123,10 +123,12 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     // Reset current and start a new round
     const playAgain = () => {
         // Reset all game data
+        if(isCPU && mark === 2) {
+            setIsCPUTurn(true)
+        } else {
+            setIsCPUTurn(false)
+        }
         setPlayer(1)
-        setIsPlayerTurn(false)
-        //Todo: Need to check if human is Player 2. If so, CPU will start first.
-        setIsCPUTurn(false)
         setGameGrid(JSON.parse(JSON.stringify(dataGameGrid)))
         setRound(1)
         setIsResult(false)
