@@ -25,11 +25,15 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [isResult, setIsResult] = useState(false)
     const [isWaitingForCPU, setIsWaitingForCPU] = useState(false)
     const [restartGame, setRestartGame] = useState(false)
+    const [isRestartGame, setIsRestartGame] = useState(false)
 
     // Set start players
     // Player 1 is always starting.
     // Check if it is a CPU game or not, then set players
     useEffect(() => {
+        // Reset restartGame
+        setRestartGame(false)
+        setIsRestartGame(false)
        /*  if(isCPU && mark) {
             // If it is a CPU game
             if(mark === 1) {
@@ -121,14 +125,18 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         // Reset all game data
         setPlayer(1)
         setIsPlayerTurn(false)
+        //Todo: Need to check if human is Player 2. If so, CPU will start first.
         setIsCPUTurn(false)
         setGameGrid(JSON.parse(JSON.stringify(dataGameGrid)))
         setRound(1)
         setIsResult(false)
     }
 
-    const viewRestartGame = (restart:boolean) => {
-        restart ? setRestartGame(true) : setRestartGame(false)
+    const viewRestartGame = (viewRestart:boolean, restart:boolean) => {
+        viewRestart ? setRestartGame(true) : setRestartGame(false)
+        if(restart) {
+            setIsRestartGame(true)
+        }
     }
 
     return(
@@ -152,7 +160,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                     ))}
             </div>
             <div>
-                <GameScore gameComplete={isResult} player={player} round={round} mark={mark} isCPU={isCPU} playAgain={playAgain} />
+                <GameScore gameComplete={isResult} player={player} round={round} mark={mark} isCPU={isCPU} playAgain={playAgain} restartGame={isRestartGame} />
             </div>
         </div>
     )

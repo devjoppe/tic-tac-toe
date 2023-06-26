@@ -1,7 +1,7 @@
 import React from "react";
 
 interface IProp {
-    viewRestartGame: (restart:boolean) => void
+    viewRestartGame: (viewRestart:boolean, restart: boolean) => void
 }
 
 const QuitBox:React.FC<IProp> = ({viewRestartGame}) => {
@@ -12,10 +12,10 @@ const QuitBox:React.FC<IProp> = ({viewRestartGame}) => {
                     Restart game?
                 </div>
                 <div className="round-buttons">
-                    <button className="quit" onClick={() => viewRestartGame(false)}>
+                    <button className="quit" onClick={() => viewRestartGame(false, false)}>
                         <span>No, Cancel</span>
                     </button>
-                    <button className="next-round">
+                    <button className="next-round" onClick={() => viewRestartGame(false, true)}>
                         <span>Yes, restart</span>
                     </button>
                 </div>

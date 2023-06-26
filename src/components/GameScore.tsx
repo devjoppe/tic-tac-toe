@@ -7,7 +7,8 @@ interface IProp {
     round: number,
     mark: number|null
     isCPU: boolean|null
-    playAgain: () => void
+    playAgain: () => void,
+    restartGame: boolean
 }
 
 const GameScore:React.FC<IProp> = ({
@@ -16,7 +17,8 @@ const GameScore:React.FC<IProp> = ({
     round,
     mark,
     isCPU,
-    playAgain}) => {
+    playAgain,
+    restartGame}) => {
 
     const [playerOne, setPlayerOne] = useState(0)
     const [playerTwo,setPlayerTwo] = useState(0)
@@ -42,6 +44,14 @@ const GameScore:React.FC<IProp> = ({
         //prop-drilling ;)
         playAgain()
     }
+
+    useEffect(() => {
+        if(restartGame) {
+            setPlayerOne(0)
+            setPlayerTwo(0)
+            playAgain()
+        }
+    }, [restartGame])
 
     return(
         <>
