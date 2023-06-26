@@ -7,10 +7,11 @@ interface IProp {
     handlePlayAgain: () => void,
     round: number,
     player: number,
-    isCPU: boolean|null
+    isCPU: boolean|null,
+    mark: number|null
 }
 
-const WinBox:React.FC<IProp> = ({handlePlayAgain, round, player, isCPU}) => {
+const WinBox:React.FC<IProp> = ({handlePlayAgain, round, player, isCPU, mark}) => {
 
     const [isTie, setIsTie] = useState(false)
 
@@ -27,6 +28,7 @@ const WinBox:React.FC<IProp> = ({handlePlayAgain, round, player, isCPU}) => {
     return(
         <div className="backplate">
             <div className="score-screen">
+                {!isTie && isCPU &&  <span>{`${player === mark ? "You won!":"Oh no, you lost..."}`}</span> }
                 {!isTie && !isCPU  && <span>Player {player} wins!</span>}
                 <div className={`${!isTie && player === 1 && "playerOne" || !isTie && player === 2 &&  "playerTwo" || isTie && ""} takes-round`}>
                     {!isTie && <img src={`${!isTie && player === 1 && xIcon || !isTie && player === 2 && oIcon }`} alt="icon" />}

@@ -55,7 +55,7 @@ const GameScore:React.FC<IProp> = ({
 
     return(
         <>
-            { gameComplete && <WinBox handlePlayAgain={handlePlayAgain} round={round} player={player} isCPU={isCPU}/> }
+            { gameComplete && <WinBox handlePlayAgain={handlePlayAgain} round={round} player={player} isCPU={isCPU} mark={mark}/> }
             <div className="score-view">
                 <div className="player_1_score">
                     {isCPU && <span>{ mark === 1 ? "X (You)" : "X (CPU)"}</span>}
