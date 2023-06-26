@@ -4,14 +4,14 @@ import oIcon from '../assets/images/icon-o.svg'
 
 interface IProp {
     handlePlayAgain: () => void,
-    round: number
+    round: number,
+    player: number,
+    isCPU: boolean|null
 }
 
-const WinBox:React.FC<IProp> = ({handlePlayAgain, round}) => {
+const WinBox:React.FC<IProp> = ({handlePlayAgain, round, player, isCPU}) => {
 
     const [isTie, setIsTie] = useState(false)
-
-    console.log(round)
 
     useEffect(() => {
         if(round === 10) {
@@ -24,10 +24,10 @@ const WinBox:React.FC<IProp> = ({handlePlayAgain, round}) => {
     return(
         <div className="backplate">
             <div className="score-screen">
-                <span>Oh no, you lost...</span>
-                <div className="takes-round playerOne">
-                    <img src={xIcon} alt="x icon" />
-                    takes the round
+                {!isTie && !isCPU  && <span>Player {player} wins!</span>}
+                <div className={`${!isTie && player === 1 && "playerOne" || !isTie && player === 2 &&  "playerTwo" || isTie && ""} takes-round`}>
+                    {!isTie && <img src={`${!isTie && player === 1 && xIcon || !isTie && player === 2 && oIcon }`} alt="icon" />}
+                    {!isTie ? "takes the round" : "Round tied"}
                 </div>
                 <div className="round-buttons">
                     <button className="quit">

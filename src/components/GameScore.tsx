@@ -32,12 +32,13 @@ const GameScore:React.FC<IProp> = ({gameComplete, player, round, mark, isCPU, pl
     }, [gameComplete, player])
 
     const handlePlayAgain = () => {
+        //prop-drilling ;)
         playAgain()
     }
 
     return(
         <>
-            {gameComplete && <WinBox handlePlayAgain={handlePlayAgain} round={round}/>}
+            {gameComplete && <WinBox handlePlayAgain={handlePlayAgain} round={round} player={player} isCPU={isCPU}/>}
             <div className="score-view">
                 <div className="player_1_score">
                     <span>{isCPU && mark === 1 ? "X (You)" : "X"}</span>
