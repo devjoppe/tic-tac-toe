@@ -59,7 +59,7 @@ const GameScore:React.FC<IProp> = ({
             <div className="score-view">
                 <div className="player_1_score">
                     {isCPU && <span>{ mark === 1 ? "X (You)" : "X (CPU)"}</span>}
-                    {!isCPU && <span>X</span>}
+                    {!isCPU && <span>{ mark === 1 ? "X (P1)" : "X (P2)"}</span>}
                     <span className="score">{playerOne}</span>
                 </div>
                 <div className="player_ties">
@@ -68,7 +68,7 @@ const GameScore:React.FC<IProp> = ({
                 </div>
                 <div className="player_2_score">
                     {isCPU && <span>{ mark === 2 ? "O (You)" : "O (CPU)"}</span>}
-                    {!isCPU && <span>O</span>}
+                    {!isCPU &&  <span>{ mark === 2 ? "O (P1)" : "O (P2)"}</span>}
                     <span className="score">{playerTwo}</span>
                 </div>
             </div>

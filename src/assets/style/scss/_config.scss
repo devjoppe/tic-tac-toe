@@ -41,8 +41,8 @@ body {
 
 .checked {
   cursor: pointer;
-  height: 32px;
-  width: 32px;
+  height: 40px;
+  width: 40px;
   &:hover {
     opacity: 0.8;
   }
@@ -54,13 +54,13 @@ body {
 
 [data-target="1"] {
   background-image: url("../../../assets/images/icon-x.svg");
-  background-size: 32px;
+  background-size: 40px;
   background-repeat: no-repeat;
 }
 
 [data-target="2"] {
   background-image: url("../../../assets/images/icon-o.svg");
-  background-size: 32px;
+  background-size: 40px;
   background-repeat: no-repeat;
 }
 
