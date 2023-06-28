@@ -12,6 +12,16 @@
     .checked {
         height: 64px;
         width: 64px;
+        &.player-1 {
+            &:hover {
+                background-size: 64px;
+            }
+        }
+        &.player-2 {
+            &:hover {
+                background-size: 64px;
+            }
+        }
     }
 
     [data-target="1"] {

@@ -156,7 +156,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                                          handleClick(div.id)
                                      }
                                  }}
-                                 className={`checked`} data-target={`${div.user.toString()}`}>
+                                 className={`checked player-${player}`} data-target={`${div.user.toString()}`}>
                             </div>
                         </div>
                     ))}

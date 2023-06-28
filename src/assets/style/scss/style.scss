@@ -98,11 +98,17 @@
             -moz-box-shadow: none;
             &.selected {
                 background: config.$color-grey-main;
+                &:hover {
+                    background: config.$color-grey-main;
+                }
             }
             img {
                 margin-top: 4px;
                 height: 32px;
                 width: 32px;
+            }
+            &:hover {
+                background: #21313B;
             }
         }
     }
@@ -130,12 +136,18 @@
         span {
             color: config.$color-dark-main;
         }
+        &:hover {
+            background: #ffdb94;
+        }
     }
     .player {
         background: config.$color-green-light;
         color: config.$color-green-main;
         span {
             color: config.$color-dark-main;
+        }
+        &:hover {
+            background: #6ffffa;
         }
     }
 }

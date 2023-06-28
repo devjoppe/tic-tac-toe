@@ -46,6 +46,20 @@ body {
   &:hover {
     opacity: 0.8;
   }
+  &.player-1 {
+    &:hover {
+      background-image: url("../../../assets/images/icon-x-outline.svg");
+      background-size: 40px;
+      background-repeat: no-repeat;
+    }
+  }
+  &.player-2 {
+    &:hover {
+      background-image: url("../../../assets/images/icon-o-outline.svg");
+      background-size: 40px;
+      background-repeat: no-repeat;
+    }
+  }
 }
 
 [data-target="0"] {
@@ -56,12 +70,18 @@ body {
   background-image: url("../../../assets/images/icon-x.svg");
   background-size: 40px;
   background-repeat: no-repeat;
+  &:hover {
+    background-image: url("../../../assets/images/icon-x.svg") !important;
+  }
 }
 
 [data-target="2"] {
   background-image: url("../../../assets/images/icon-o.svg");
   background-size: 40px;
   background-repeat: no-repeat;
+  &:hover {
+    background-image: url("../../../assets/images/icon-o.svg") !important;
+  }
 }
 
 button {
