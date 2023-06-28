@@ -142,7 +142,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     }
 
     return(
-        <div>
+        <div className="game-board">
             { restartGame && <QuitBox viewRestartGame={viewRestartGame} /> }
             <div>
                 <GameHeading player={player} viewRestartGame={viewRestartGame} />

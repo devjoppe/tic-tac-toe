@@ -1,4 +1,10 @@
 @use 'config';
+@use 'min-1024';
+
+#root {
+    display: flex;
+    justify-content: center;
+}
 
 .start-container {
     min-height: 100vh;
@@ -11,7 +17,7 @@
 .game-heading {
     display: flex;
     flex-direction: row;
-    margin: 20px 20px 46px 20px;
+    margin: 20px 20px 20px 20px;
     justify-content: space-between;
     .logo-heading {
         display: flex;
@@ -55,6 +61,13 @@
             height: 16px;
         }
     }
+}
+
+.game-board {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .pick-players {

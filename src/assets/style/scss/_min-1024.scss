@@ -1,0 +1,25 @@
+@use 'config';
+
+@media screen and (min-width: 1024px) {
+    .start-container {
+        width: 460px;
+    }
+
+    .game-board {
+        width: 460px;
+    }
+
+    .checked {
+        height: 64px;
+        width: 64px;
+    }
+
+    [data-target="1"] {
+        background-size: 64px;
+    }
+
+    [data-target="2"] {
+        background-size: 64px;
+    }
+
+}
