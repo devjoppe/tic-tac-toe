@@ -27,18 +27,15 @@ export const checkResult = (playedGrid:PlayedGridInt[]) => {
     let checkMiddle = false
     playedGrid.forEach(item => {
         if(item.times === 3) {
-            console.log("Win - Hor - Ver")
             res = true
         }
         if(item.grid === 'MIDDLE' && item.times === 1) {
             checkMiddle = true
-            console.log("MIDDLE:", checkMiddle)
         }
     })
     const checkLine: string[] = ['LEFT', 'RIGHT'];
     checkLine.forEach(line => {
         if (playedGrid.some(item => item.grid === line && item.lines === 2 && checkMiddle)) {
-            console.log("Win - Lines")
             res = true;
         }
     });

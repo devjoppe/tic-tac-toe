@@ -33,17 +33,8 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         // Reset restartGame
         setRestartGame(false)
         setIsRestartGame(false)
-       /*  if(isCPU && mark) {
-            // If it is a CPU game
-            if(mark === 1) {
-                // Player is starting
-                setIsPlayerTurn(true)
-            } else {
-               // CPU is starting
-                setIsCPUTurn(true)
-            }
-        }*/
-        // Testing out some other code ->
+
+        // set players
         if (isCPU && mark) {
             setIsPlayerTurn(mark === 1);
             setIsCPUTurn(mark !== 1);
@@ -69,7 +60,6 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
 
     // Player and CPU runs handleClick on each turn
     const handleClick = (gridId:number) => {
-
         setGameGrid(checkPlayedGrid(gameGrid, gridId, player))
 
         // Construct the grid check for the results
@@ -103,16 +93,6 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
 
     // Function to change player each round
     const changePlayer = () => {
-       /* if(isCPU) {
-            if(isCPUTurn) {
-                setIsPlayerTurn(true)
-                setIsCPUTurn(false)
-            } else {
-                setIsCPUTurn(true)
-                setIsPlayerTurn(false)
-            }
-        }*/
-        // Testing out this code:
         if (isCPU) {
             setIsPlayerTurn((prevIsPlayerTurn) => !prevIsPlayerTurn);
             setIsCPUTurn((prevIsCPUTurn) => !prevIsCPUTurn);
