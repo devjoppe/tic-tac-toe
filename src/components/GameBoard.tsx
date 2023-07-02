@@ -6,7 +6,7 @@ import {cpuTurn} from "../functions/cpuTurn.ts";
 import {GameGridInt} from "../interfaces/GameInt.ts";
 import {checkPlayedGrid} from "../functions/checkPlayedGrid.ts";
 import {switchPlayers} from "../functions/switchPlayers.ts";
-import {checkResult, playedGridCheck} from "../functions/checkResult.ts";
+import {checkResult, playedGridCheck, checkLines} from "../functions/checkResult.ts";
 import QuitBox from "./QuitBox.tsx";
 
 interface IProp {
@@ -68,28 +68,12 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         const storePlayedGrid = playedGridCheck(gameGrid, player)
         const result = checkResult(storePlayedGrid)
 
-        // Todo: Mark the grid items on the game board after finished result
         // Check marked grids and display if round is completed
-        console.log("gameGrid: ", gameGrid)
-        console.log("storePlayedGrid: ", storePlayedGrid)
-        const threeTimes = storePlayedGrid.filter(item => item.times === 3)
-        const checkLinesCorners = storePlayedGrid
-            .filter(item =>
-                (item.grid === "LEFT" || item.grid ===  "RIGHT") && item.times === 2)
-        const checkLineMiddle = storePlayedGrid.filter(item => item.grid === "MIDDLE" && item.times === 1)
-        console.log("checkLinesCorners: ", checkLinesCorners, "checkLineMiddle", checkLineMiddle)
-        if(checkLinesCorners[0] && checkLineMiddle[0]) {
-            console.log("The corner and middle lines is DONE!!")
-            setIsXLine(checkLinesCorners[0].grid)
+        if(storePlayedGrid) {
+            // Set Horizontal and Vertical line
+            setCompletedGrid(checkLines(storePlayedGrid).toString())
+            setIsXLine(checkLines(storePlayedGrid))
         }
-        console.log("threeTimes: ", threeTimes[0] && threeTimes[0].grid)
-        if(threeTimes[0]) {
-            setCompletedGrid(threeTimes[0].grid.toString())
-        }
-        console.log("completedGrid first: ", completedGrid)
-        // Todo: Easiest thing would be to add another prop to the gameGrid to check everyone with correct letter?
-
-        // =================================================================================
 
         // Set the result from the check
         setIsResult(result)

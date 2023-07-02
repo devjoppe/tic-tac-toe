@@ -40,3 +40,23 @@ export const checkResult = (playedGrid:PlayedGridInt[]) => {
     });
     return res
 }
+
+// Check X lines
+export const checkLines = (storePlayedGrid:PlayedGridInt[]) => {
+    console.log("Check Lines")
+    // Check the horizontal and vertical lines
+    const checkHorVer = storePlayedGrid.filter(item => item.times === 3)
+    if(checkHorVer[0]) {
+        return checkHorVer[0].grid
+    }
+
+    // Check the corners and middle to form the X-line.
+    const checkXLines = storePlayedGrid
+        .filter(item =>
+            (item.grid === "LEFT" || item.grid ===  "RIGHT") && item.times === 2)
+    const checkMiddle = storePlayedGrid.filter(item => item.grid === "MIDDLE" && item.times === 1)
+    if(checkXLines[0] && checkMiddle[0]) {
+        return checkXLines[0].grid
+    }
+    return ""
+}
