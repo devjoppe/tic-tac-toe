@@ -26,7 +26,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [restartGame, setRestartGame] = useState(false)
     const [isRestartGame, setIsRestartGame] = useState(false)
     const [completedGrid, setCompletedGrid] = useState<string|null>("")
-    const [isXLine, setIsXLine] = useState(false)
+    const [isXLine, setIsXLine] = useState<string|null>("")
 
     // Set start players
     // Player 1 is always starting.
@@ -78,8 +78,9 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
                 (item.grid === "LEFT" || item.grid ===  "RIGHT") && item.times === 2)
         const checkLineMiddle = storePlayedGrid.filter(item => item.grid === "MIDDLE" && item.times === 1)
         console.log("checkLinesCorners: ", checkLinesCorners, "checkLineMiddle", checkLineMiddle)
-        if(checkLinesCorners && checkLineMiddle) {
+        if(checkLinesCorners[0] && checkLineMiddle[0]) {
             console.log("The corner and middle lines is DONE!!")
+            setIsXLine(checkLinesCorners[0].grid)
         }
         console.log("threeTimes: ", threeTimes[0] && threeTimes[0].grid)
         if(threeTimes[0]) {
@@ -138,6 +139,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         setRound(1)
         setIsResult(false)
         setCompletedGrid("")
+        setIsXLine("")
     }
 
     const viewRestartGame = (viewRestart:boolean, restart:boolean) => {
@@ -156,7 +158,9 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
             {isWaitingForCPU && "WAITING FOR CPU MOVE"}
             <div className="parent">
                     {gameGrid && gameGrid.map(div => (
-                        <div className="grid-item" key={div.id} data-completed={`${completedGrid && completedGrid === div.col || completedGrid === div.row} ${div.user.toString()}`}>
+                        <div className="grid-item" key={div.id}
+                             data-completed={`${completedGrid && completedGrid === div.col || completedGrid === div.row} ${div.user.toString()}`}
+                             data-line={`${isXLine && (isXLine === div.line || div.line === "MIDDLE") ? `${isXLine} ${div.user}` : ""}`}>
                             <div onClick={() => {
                                      if(isPlayerTurn) {
                                          handleClick(div.id)
