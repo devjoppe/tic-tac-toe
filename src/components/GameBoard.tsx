@@ -25,6 +25,8 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [isWaitingForCPU, setIsWaitingForCPU] = useState(false)
     const [restartGame, setRestartGame] = useState(false)
     const [isRestartGame, setIsRestartGame] = useState(false)
+    const [completedGrid, setCompletedGrid] = useState<string|null>("")
+    const [isXLine, setIsXLine] = useState(false)
 
     // Set start players
     // Player 1 is always starting.
@@ -66,6 +68,28 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         const storePlayedGrid = playedGridCheck(gameGrid, player)
         const result = checkResult(storePlayedGrid)
 
+        // Todo: Mark the grid items on the game board after finished result
+        // Check marked grids and display if round is completed
+        console.log("gameGrid: ", gameGrid)
+        console.log("storePlayedGrid: ", storePlayedGrid)
+        const threeTimes = storePlayedGrid.filter(item => item.times === 3)
+        const checkLinesCorners = storePlayedGrid
+            .filter(item =>
+                (item.grid === "LEFT" || item.grid ===  "RIGHT") && item.times === 2)
+        const checkLineMiddle = storePlayedGrid.filter(item => item.grid === "MIDDLE" && item.times === 1)
+        console.log("checkLinesCorners: ", checkLinesCorners, "checkLineMiddle", checkLineMiddle)
+        if(checkLinesCorners && checkLineMiddle) {
+            console.log("The corner and middle lines is DONE!!")
+        }
+        console.log("threeTimes: ", threeTimes[0] && threeTimes[0].grid)
+        if(threeTimes[0]) {
+            setCompletedGrid(threeTimes[0].grid.toString())
+        }
+        console.log("completedGrid first: ", completedGrid)
+        // Todo: Easiest thing would be to add another prop to the gameGrid to check everyone with correct letter?
+
+        // =================================================================================
+
         // Set the result from the check
         setIsResult(result)
         // If it is a tie
@@ -82,6 +106,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
 
     // Handles the result. If true the round is complete
     useEffect(() => {
+        console.log("completedGrid second: ", completedGrid)
         if(isResult) {
             if(isCPU) {
                 setIsCPUTurn(false)
@@ -89,7 +114,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
             setIsPlayerTurn(false)
             return
         }
-    }, [isResult, isCPU])
+    }, [isResult, isCPU, completedGrid])
 
     // Function to change player each round
     const changePlayer = () => {
@@ -112,6 +137,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         setGameGrid(JSON.parse(JSON.stringify(dataGameGrid)))
         setRound(1)
         setIsResult(false)
+        setCompletedGrid("")
     }
 
     const viewRestartGame = (viewRestart:boolean, restart:boolean) => {
@@ -130,7 +156,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
             {isWaitingForCPU && "WAITING FOR CPU MOVE"}
             <div className="parent">
                     {gameGrid && gameGrid.map(div => (
-                        <div className="grid-item" key={div.id}>
+                        <div className="grid-item" key={div.id} data-completed={`${completedGrid && completedGrid === div.col || completedGrid === div.row} ${div.user.toString()}`}>
                             <div onClick={() => {
                                      if(isPlayerTurn) {
                                          handleClick(div.id)

@@ -66,6 +66,24 @@ body {
   background-image: none;
 }
 
+[data-completed="true"] {
+  background: red !important;
+}
+
+[data-completed="true 1"] {
+  background: $color-green-main !important;
+  div {
+    filter: brightness(0%)
+  }
+}
+
+[data-completed="true 2"] {
+  background: $color-yellow-main !important;
+  div {
+    filter: brightness(0%)
+  }
+}
+
 [data-target="1"] {
   background-image: url("../../../assets/images/icon-x.svg");
   background-size: 40px;

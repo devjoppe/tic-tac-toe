@@ -4,7 +4,7 @@ export interface GameGridInt {
     row: string,
     line: string
     checked: boolean,
-    user: number,
+    user: number
 }
 
 export interface PlayedGridInt {

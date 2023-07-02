@@ -17,7 +17,6 @@ const GamePage:React.FC<IProp> = ({isCPU, mark}) => {
             navigate('/error')
             return
         }
-        console.log(isCPU, mark)
     }, [isCPU, mark, navigate])
 
     return(

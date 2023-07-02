@@ -22,7 +22,6 @@ export const playedGridCheck = (gameGrid:GameGridInt[], player:number) => {
 }
 
 export const checkResult = (playedGrid:PlayedGridInt[]) => {
-    console.log("checkResult")
     let res = false
     let checkMiddle = false
     playedGrid.forEach(item => {

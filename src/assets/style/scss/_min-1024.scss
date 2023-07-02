@@ -2,11 +2,11 @@
 
 @media screen and (min-width: 1024px) {
     .start-container {
-        width: 460px;
+       width: 460px !important;
     }
 
     .game-board {
-        width: 460px;
+        width: 460px !important;
     }
 
     .checked {
@@ -32,4 +32,12 @@
         background-size: 64px;
     }
 
+    .takes-round {
+        font-size: 40px !important;
+        img {
+            height: 64px !important;
+            width: 64px !important;
+            margin-right: 12px !important;
+        }
+    }
 }

@@ -58,7 +58,7 @@ const GameScore:React.FC<IProp> = ({
             { gameComplete && <WinBox handlePlayAgain={handlePlayAgain} round={round} player={player} isCPU={isCPU} mark={mark}/> }
             <div className="score-view">
                 <div className="player_1_score">
-                    {isCPU && <span>{ mark === 1 ? "X (You)" : "X (CPU)"}</span>}
+                    {isCPU && <span>{ mark === 1 ? "X (YOU)" : "X (CPU)"}</span>}
                     {!isCPU && <span>{ mark === 1 ? "X (P1)" : "X (P2)"}</span>}
                     <span className="score">{playerOne}</span>
                 </div>
@@ -67,7 +67,7 @@ const GameScore:React.FC<IProp> = ({
                     <span className="score">{ties}</span>
                 </div>
                 <div className="player_2_score">
-                    {isCPU && <span>{ mark === 2 ? "O (You)" : "O (CPU)"}</span>}
+                    {isCPU && <span>{ mark === 2 ? "O (YOU)" : "O (CPU)"}</span>}
                     {!isCPU &&  <span>{ mark === 2 ? "O (P1)" : "O (P2)"}</span>}
                     <span className="score">{playerTwo}</span>
                 </div>
