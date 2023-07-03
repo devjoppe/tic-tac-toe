@@ -41,9 +41,8 @@ export const checkResult = (playedGrid:PlayedGridInt[]) => {
     return res
 }
 
-// Check X lines
+// Check cross lines
 export const checkLines = (storePlayedGrid:PlayedGridInt[]) => {
-    console.log("Check Lines")
     // Check the horizontal and vertical lines
     const checkHorVer = storePlayedGrid.filter(item => item.times === 3)
     if(checkHorVer[0]) {

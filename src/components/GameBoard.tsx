@@ -43,6 +43,8 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         }
     }, [isCPU, mark])
 
+    console.log("isRestartGame: ", isRestartGame)
+
     // Check if the CPU is playing and if its turn.
     useEffect(() => {
         if(isCPU && isCPUTurn && !isResult) {
@@ -124,6 +126,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         setIsResult(false)
         setCompletedGrid("")
         setIsXLine("")
+        setIsRestartGame(false)
     }
 
     const viewRestartGame = (viewRestart:boolean, restart:boolean) => {
