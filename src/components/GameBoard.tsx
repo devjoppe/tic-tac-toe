@@ -43,8 +43,6 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         }
     }, [isCPU, mark])
 
-    console.log("isRestartGame: ", isRestartGame)
-
     // Check if the CPU is playing and if its turn.
     useEffect(() => {
         if(isCPU && isCPUTurn && !isResult) {
@@ -64,7 +62,12 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
 
     // Player and CPU runs handleClick on each turn
     const handleClick = (gridId:number) => {
-        setGameGrid(checkPlayedGrid(gameGrid, gridId, player))
+
+        const checkGameGridData = checkPlayedGrid(gameGrid, gridId, player)
+        console.log(checkGameGridData)
+        if(checkGameGridData != undefined) {
+            setGameGrid(checkGameGridData)
+        }
 
         // Construct the grid check for the results
         const storePlayedGrid = playedGridCheck(gameGrid, player)
@@ -85,7 +88,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         }
 
         // If false, change player and count rounds
-        if(!result) {
+        if(!result && checkGameGridData != undefined) {
             setRound(current => current + 1)
             changePlayer()
         }
