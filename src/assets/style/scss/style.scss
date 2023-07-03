@@ -257,3 +257,22 @@
         }
     }
 }
+
+// Progress bar
+.progress-wrapper {
+    padding: 0 20px;
+}
+.progress-container {
+    height: 0.8rem;
+    width: 100%;
+    border-radius: 0.4rem;
+    background: config.$color-dark-secondary;
+}
+
+.progress-container .progress {
+    height: 100%;
+    width: 0;
+    border-radius: 0.4rem;
+    background: #6B8997;
+    transition: width 0.4s ease;
+}

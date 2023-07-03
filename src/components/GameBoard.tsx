@@ -27,6 +27,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     const [isRestartGame, setIsRestartGame] = useState(false)
     const [completedGrid, setCompletedGrid] = useState<string|null>("")
     const [isXLine, setIsXLine] = useState<string|null>("")
+    const [time, setTime] = useState(0)
 
     // Set start players
     // Player 1 is always starting.
@@ -47,6 +48,7 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
     useEffect(() => {
         if(isCPU && isCPUTurn && !isResult) {
             setIsWaitingForCPU(true)
+            isLoading()
             setTimeout(() => {
                 // Computing the CPU move
                 const res = cpuTurn(gameGrid)
@@ -60,11 +62,21 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
         }
     }, [isCPU, isCPUTurn, isPlayerTurn])
 
+    // Loading the CPU move
+    const isLoading = () => {
+        let interval = 0
+        interval = setInterval(() => setTime(current => current + 50), 1000)
+        setTimeout(() => {
+            setTime(0)
+            clearInterval(interval);
+        }, 3000)
+        console.log("Is running isLoading...", time, interval)
+    }
+
     // Player and CPU runs handleClick on each turn
     const handleClick = (gridId:number) => {
-
+        // Checking if the grid is already selected. If yes, will return undefined.
         const checkGameGridData = checkPlayedGrid(gameGrid, gridId, player)
-        console.log(checkGameGridData)
         if(checkGameGridData != undefined) {
             setGameGrid(checkGameGridData)
         }
@@ -96,7 +108,6 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
 
     // Handles the result. If true the round is complete
     useEffect(() => {
-        console.log("completedGrid second: ", completedGrid)
         if(isResult) {
             if(isCPU) {
                 setIsCPUTurn(false)
@@ -145,7 +156,15 @@ const GameBoard:React.FC<IProp> = ({isCPU, mark}) => {
             <div>
                 <GameHeading player={player} viewRestartGame={viewRestartGame} />
             </div>
-            {isWaitingForCPU && "WAITING FOR CPU MOVE"}
+            { isCPU &&
+                <div className="progress-wrapper">
+                    <div className="progress-container">
+                    { isWaitingForCPU &&
+                        <div className="progress" style={{width: `${time}%`}}></div>
+                    }
+                    </div>
+                </div>
+            }
             <div className="parent">
                     {gameGrid && gameGrid.map(div => (
                         <div className="grid-item" key={div.id}
