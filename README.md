@@ -1,4 +1,4 @@
-# Peeps - The card Game
+# Tic Tac Toe
 
 The primary goal of the project was to learn and improve my skills by focusing on the game logic and following the specifications outlined in the design provided by frontendmentor.io. By working on this challenge, I was able to enhance my understanding of React, TypeScript, and front-end development concepts.
 
